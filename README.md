@@ -6,3 +6,6 @@
 ## FEATURES 
 
 - 🚧 Adicionar legendas automáticas aos vídeos 
+ 
+## Desenvolvimento
+### Foi necessário criar umas chave de api do google apis para conseguir acessar os dados do youtube 

@@ -5,7 +5,15 @@
 
 ## FEATURES 
 
-- 🚧 Adicionar legendas automáticas aos vídeos 
+- 🚧 Adicionar legendas automáticas aos vídeos
+    - ✅ Recuperar Legendas de um vídeo
  
-## Desenvolvimento
-### Foi necessário criar umas chave de api do google apis para conseguir acessar os dados do youtube 
+## DESENVOLVIMENTO
+### Foi necessário criar uma chave de api do google apis para conseguir acessar os dados do youtube 
+
+
+
+
+### LEGENDAS DO TEXTO
+✅ - Concluído <br>
+🚧 - Em Construção

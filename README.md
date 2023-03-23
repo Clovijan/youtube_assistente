@@ -7,6 +7,7 @@
 
 - 🚧 Adicionar legendas automáticas aos vídeos
     - ✅ Recuperar Legendas de um vídeo
+    - ✅ Traduzir Legenda para o idioma indicado
  
 ## DESENVOLVIMENTO
 ### Foi necessário criar uma chave de api do google apis para conseguir acessar os dados do youtube 

@@ -1,10 +1,8 @@
 from youtube_transcript_api import YouTubeTranscriptApi
 from googletrans import Translator
 
-# A partir do ID do vídeo ele recupera as legendas desse vídeo
 
-
-def getCaption(idVideo):
+def getCaption(idVideo):  # A partir do ID do vídeo ele recupera as legendas desse vídeo
     transcript = YouTubeTranscriptApi.get_transcript(
         idVideo, languages=['pt'])
     return transcript
@@ -12,8 +10,15 @@ def getCaption(idVideo):
 
 def tradutor(transcript):
     translator = Translator()
-    translated = translator.translate(transcript, src="pt", dest='en').text
+    translated = ""
+    translated = list(map(lambda x: translator.translate(x,
+                      src="pt", dest='en').text, transcript))
     return translated
 
 
-print(tradutor('ola mundo'))
+legendas = getCaption("ojgcqzFloAk")
+
+legendasExtraídas = list(map(lambda x: x['text'], legendas))
+
+
+print(tradutor(legendasExtraídas))

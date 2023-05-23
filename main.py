@@ -12,13 +12,11 @@ def tradutor(transcript):
     translator = Translator()
     translated = ""
     translated = list(map(lambda x: translator.translate(x,
-                      src="pt", dest='en').text, transcript))
+                      src="en", dest='pt').text, transcript))
     return translated
 
 
-legendas = getCaption("ojgcqzFloAk")
-
+legendas = getCaption("RWIbWaCS0YM")
 legendasExtraídas = list(map(lambda x: x['text'], legendas))
 
-
-print(tradutor(legendasExtraídas))
+print(legendasExtraídas)

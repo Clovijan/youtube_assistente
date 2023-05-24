@@ -1,29 +1,32 @@
-from google_auth_oauthlib.flow import InstalledAppFlow
-from googleapiclient.discovery import build
+# Importe as bibliotecas necessárias
+from YouTubeAPI import YouTubeAPI
 
-# Defina as informações de autenticação
-client_id = '858706138504-sgrrc3pgck2tliikhpu4si4f02pi42qn.apps.googleusercontent.com'
-client_secret = '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'
-scopes = ['https://www.googleapis.com/auth/youtube.force-ssl']
+# Caminho para o arquivo de credenciais da API e chave da API
+credentials_path = 'client_secrets.json'
 
-# Configuração do fluxo de autenticação
-flow = InstalledAppFlow.from_client_secrets_file(
-    'client_secrets.json',
-    scopes=scopes
-)
-credentials = flow.run_local_server(host='localhost',
-                                    port=8080,
-                                    open_browser=True)
+# Crie uma instância da classe YouTubeAPI
+youtube_api = YouTubeAPI(credentials_path)
 
-# Criação do serviço da API do YouTube
-youtube_service = build('youtube', 'v3', credentials=credentials)
-
-response = youtube_service.search().list(
-    part='snippet',
-    channelId='UCL88vArV8o7RaCUV2pMbFmw',
-    type='video'
+# Autentique no canal
+youtube = youtube_api.youtube
+my_channel = youtube.channels().list(
+    part='contentDetails',
+    mine=True
 ).execute()
 
-videos = response['items']
-for video in videos:
-    print(video['snippet']['title'])
+channel_id = my_channel['items'][0]['id']
+
+# Liste os 10 primeiros vídeos do canal autenticado
+videos = youtube.search().list(
+    part='snippet',
+    channelId=channel_id,
+    maxResults=10,
+    order='date'
+).execute()
+
+for video in videos['items']:
+    video_id = video['id']['videoId']
+    title = video['snippet']['title']
+    print(f"Video ID: {video_id}")
+    print(f"Title: {title}")
+    print("----------------------")
